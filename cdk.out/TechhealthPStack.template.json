@@ -1,0 +1,1083 @@
+{
+ "Resources": {
+  "MigrationVPCE306A4C1": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/Resource"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet1Subnet5BB80538": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet1/Subnet"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet1RouteTable23338FA5": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet1/RouteTable"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet1RouteTableAssociation7A84F3CD": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet1RouteTable23338FA5"
+    },
+    "SubnetId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet1Subnet5BB80538"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet1DefaultRouteF782B722": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "MigrationVPCIGWA52D1F86"
+    },
+    "RouteTableId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet1RouteTable23338FA5"
+    }
+   },
+   "DependsOn": [
+    "MigrationVPCVPCGWCF8ED76A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet1/DefaultRoute"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet2Subnet6D677928": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet2/Subnet"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet2RouteTable131B975A": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet2/RouteTable"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet2RouteTableAssociation44B07838": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet2RouteTable131B975A"
+    },
+    "SubnetId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet2Subnet6D677928"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "MigrationVPCPublicSubnetSubnet2DefaultRouteA549A3F0": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "MigrationVPCIGWA52D1F86"
+    },
+    "RouteTableId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet2RouteTable131B975A"
+    }
+   },
+   "DependsOn": [
+    "MigrationVPCVPCGWCF8ED76A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PublicSubnetSubnet2/DefaultRoute"
+   }
+  },
+  "MigrationVPCPrivateSubnetSubnet1Subnet5EF4D219": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.2.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet1/Subnet"
+   }
+  },
+  "MigrationVPCPrivateSubnetSubnet1RouteTable3D24BEC3": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet1/RouteTable"
+   }
+  },
+  "MigrationVPCPrivateSubnetSubnet1RouteTableAssociation4DAA2428": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MigrationVPCPrivateSubnetSubnet1RouteTable3D24BEC3"
+    },
+    "SubnetId": {
+     "Ref": "MigrationVPCPrivateSubnetSubnet1Subnet5EF4D219"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "MigrationVPCPrivateSubnetSubnet2Subnet09B00054": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.3.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet2/Subnet"
+   }
+  },
+  "MigrationVPCPrivateSubnetSubnet2RouteTable870528F4": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet2/RouteTable"
+   }
+  },
+  "MigrationVPCPrivateSubnetSubnet2RouteTableAssociationDB56C233": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MigrationVPCPrivateSubnetSubnet2RouteTable870528F4"
+    },
+    "SubnetId": {
+     "Ref": "MigrationVPCPrivateSubnetSubnet2Subnet09B00054"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/PrivateSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "MigrationVPCIGWA52D1F86": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationVPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/IGW"
+   }
+  },
+  "MigrationVPCVPCGWCF8ED76A": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "MigrationVPCIGWA52D1F86"
+    },
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/VPCGW"
+   }
+  },
+  "MigrationVPCRestrictDefaultSecurityGroupCustomResourceA05BAEF4": {
+   "Type": "Custom::VpcRestrictDefaultSG",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E",
+      "Arn"
+     ]
+    },
+    "DefaultSecurityGroupId": {
+     "Fn::GetAtt": [
+      "MigrationVPCE306A4C1",
+      "DefaultSecurityGroup"
+     ]
+    },
+    "Account": {
+     "Ref": "AWS::AccountId"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationVPC/RestrictDefaultSecurityGroupCustomResource/Default"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Action": [
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:RevokeSecurityGroupEgress"
+         ],
+         "Resource": [
+          {
+           "Fn::Join": [
+            "",
+            [
+             "arn:",
+             {
+              "Ref": "AWS::Partition"
+             },
+             ":ec2:",
+             {
+              "Ref": "AWS::Region"
+             },
+             ":",
+             {
+              "Ref": "AWS::AccountId"
+             },
+             ":security-group/",
+             {
+              "Fn::GetAtt": [
+               "MigrationVPCE306A4C1",
+               "DefaultSecurityGroup"
+              ]
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
+    "Description": "Lambda function for removing all inbound/outbound rules from the VPC default security group"
+   },
+   "DependsOn": [
+    "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200",
+    "aws:asset:property": "Code"
+   }
+  },
+  "EC2SecurityGroup05DEE054": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for EC2 instance",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow SSH",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTP",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/EC2SecurityGroup/Resource"
+   }
+  },
+  "RDSSecurityGroup6BF2CF10": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for RDS instance",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MigrationVPCE306A4C1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/RDSSecurityGroup/Resource"
+   }
+  },
+  "RDSSecurityGroupfromTechhealthPStackEC2SecurityGroup5484A1C8330603F8AA14": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Allow MySQL from EC2",
+    "FromPort": 3306,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "RDSSecurityGroup6BF2CF10",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "EC2SecurityGroup05DEE054",
+      "GroupId"
+     ]
+    },
+    "ToPort": 3306
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/RDSSecurityGroup/from TechhealthPStackEC2SecurityGroup5484A1C8:3306"
+   }
+  },
+  "EC2IAMRole848AAF1A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/EC2IAMRole/Resource"
+   }
+  },
+  "MigrationEC2InstanceProfileDC0FCC81": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "EC2IAMRole848AAF1A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationEC2/InstanceProfile"
+   }
+  },
+  "MigrationEC207810D48": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "IamInstanceProfile": {
+     "Ref": "MigrationEC2InstanceProfileDC0FCC81"
+    },
+    "ImageId": {
+     "Fn::FindInMap": [
+      "MigrationEC2AmiMapB5D763A6",
+      {
+       "Ref": "AWS::Region"
+      },
+      "ami"
+     ]
+    },
+    "InstanceType": "t2.micro",
+    "KeyName": "privatekey",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "EC2SecurityGroup05DEE054",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "MigrationVPCPublicSubnetSubnet1Subnet5BB80538"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TechhealthPStack/MigrationEC2"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash"
+    }
+   },
+   "DependsOn": [
+    "EC2IAMRole848AAF1A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationEC2/Resource"
+   }
+  },
+  "MigrationRDSSubnetGroupE05F4F6E": {
+   "Type": "AWS::RDS::DBSubnetGroup",
+   "Properties": {
+    "DBSubnetGroupDescription": "Subnet group for MigrationRDS database",
+    "SubnetIds": [
+     {
+      "Ref": "MigrationVPCPrivateSubnetSubnet1Subnet5EF4D219"
+     },
+     {
+      "Ref": "MigrationVPCPrivateSubnetSubnet2Subnet09B00054"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationRDS/SubnetGroup/Default"
+   }
+  },
+  "MigrationRDSSecret205070E7": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Generated by the CDK for stack: ",
+       {
+        "Ref": "AWS::StackName"
+       }
+      ]
+     ]
+    },
+    "GenerateSecretString": {
+     "ExcludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\",
+     "GenerateStringKey": "password",
+     "PasswordLength": 30,
+     "SecretStringTemplate": "{\"username\":\"admin\"}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationRDS/Secret/Resource"
+   }
+  },
+  "MigrationRDSSecretAttachment0C9C6630": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "MigrationRDSSecret205070E7"
+    },
+    "TargetId": {
+     "Ref": "MigrationRDS7E06C147"
+    },
+    "TargetType": "AWS::RDS::DBInstance"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationRDS/Secret/Attachment/Resource"
+   }
+  },
+  "MigrationRDS7E06C147": {
+   "Type": "AWS::RDS::DBInstance",
+   "Properties": {
+    "AllocatedStorage": "20",
+    "CopyTagsToSnapshot": true,
+    "DBInstanceClass": "db.t3.micro",
+    "DBSubnetGroupName": {
+     "Ref": "MigrationRDSSubnetGroupE05F4F6E"
+    },
+    "Engine": "mysql",
+    "EngineVersion": "8.0",
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "MigrationRDSSecret205070E7"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "MasterUsername": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "MigrationRDSSecret205070E7"
+       },
+       ":SecretString:username::}}"
+      ]
+     ]
+    },
+    "PubliclyAccessible": false,
+    "StorageType": "gp2",
+    "VPCSecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "RDSSecurityGroup6BF2CF10",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/MigrationRDS/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/+1WwW7jNhD9ltUxUNTUh22Rm+xFF0abxrDTHGoExZgay4wpkp0h5VUF/XshUYpkNy0WRQrk0JOoId/M4/DNkLNkdvN9cvMBTnwtsuO1kruk3jgQxxhO/FuNYpbUj1Zs66iAL+kfHN1GV1Ecsd9pdAuj9zL3BE4aHd1u60jIjO6Aj/0yDQWeIR4q2xpWfqekiJr4qxFLNgocZlHz1DzFi71+XC3i4GbTrdvWEZQgFeykkq761ejBT2nFMuvHbbS5MmIIV4ANTpb2Xv8EXotDdOvIYxxJW35cXCwHZpnrpS0/pllGyHyvF4T99qOrbkPvgsW7IfI+WATJBKG0o7XxDh9gp3C0j7aU2QjZOXhZHK9IluDwzcW2B8XvIL3/03grGp3UltohaXSfweEJqr5h9X+pcyAOBWoXb1B4kq76TMbbbd0yHeIoZU6pUvfe7YzX2VABGbIgac+3nWVLnbdk1l5haMSgl1pJjcESsMJojaKFDn3ca/m7xz45Xd+IrqKn/8rnG+2u9TB4DYU9zeJfDD04Xmp2oAWepbm0/f3B0W39N5dUJHtkPxFkIw5S47KA/OW+mgbtbWTUMH3EagWSzkQS3DaxhCKp10a13IDZF5jNq5aQJamFtKBSIYzXbhShL7AFpGLMVZ+sO9CQY7YySoqqO7hiaklpEGpg0XqZslmR2UuFTUwZJ/UncLADxknyUOeyLa1hNMkKS50r/IWR1sZ1NZFaq6QYyyPuQY9I3NnqaO+Vevntk/tsaGpq4sgCQYEOqUvvD1BIVZ15PDOxt9aQ4zVCtsaOwhzE0VsOSmvir9PA+Oy4OF8OOnx6VRytukUL2zhDo0AIC1OCGg6mFbsjU7VqCPGHLnBZBf+C7GWsQXOf5pNQ8XC6GxTU3WqoBVVd4B+xGnVN6H4eH2YUErrG/KXqW+l5Rpo+3y5hr/nGL0L5DBcHIBAOiSchQOC9XgHzyVC2IOmQJCwOoHPkf2DSb3MsrkCEQxFQUof+QNh1X0L3AJSjG5vytu6590FcNz9x/jqsaeI1svEkMChj4dmZ4sK214PhYn5FppQZ0hwY45QZ3cZBLnXeYu7AWqnzJtYmw+SZvylns+Tb75KbD88s5TV57WSByTp8/wQ31tJp1QsAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "TechhealthPStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Mappings": {
+  "MigrationEC2AmiMapB5D763A6": {
+   "us-east-1": {
+    "ami": "ami-00ca32bbc84273381"
+   }
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
